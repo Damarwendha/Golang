@@ -12,3 +12,8 @@ Example: ```SELECT major, COUNT(*) AS jumlah_peserta FROM mst_student WHERE majo
 Output:
 <br />
 ![image](https://github.com/Damarwendha/Golang/assets/143293717/ec61a1f9-80f4-4854-bc31-1f9892d7d981)
+
+### USEFUL VIDEO'S
+-) Learn Database Normalization - 1NF, 2NF, 3NF, 4NF, 5NF
+<br />
+https://youtu.be/GFQaEYEc8_8?si=-3F8fcKEYroFU9YE
