@@ -13,6 +13,10 @@ Output:
 <br />
 ![image](https://github.com/Damarwendha/Golang/assets/143293717/ec61a1f9-80f4-4854-bc31-1f9892d7d981)
 
+### Refer/Connect table to another table
+```ALTER TABLE table_name ADD CONSTRAINT constraint_name FOREIGN KEY(column_name) REFERENCES table_name_sec(column_name_sec)```
+<br />
+Example: ```ALTER TABLE mst_product ADD CONSTRAINT fk_product_store FOREIGN KEY(store_id) REFERENCES mst_store(id)```
 # USEFUL VIDEO'S
 -) Learn Database Normalization
 <br />
