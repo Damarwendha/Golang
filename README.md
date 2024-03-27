@@ -17,6 +17,9 @@ Output:
 ```ALTER TABLE table_name ADD CONSTRAINT constraint_name FOREIGN KEY(column_name) REFERENCES table_name_sec(column_name_sec)```
 <br />
 Example: ```ALTER TABLE mst_product ADD CONSTRAINT fk_product_store FOREIGN KEY(store_id) REFERENCES mst_store(id)```
+
+### Using too much Join query will lead to bad query performance
+
 # USEFUL VIDEO'S
 -) Learn Database Normalization
 <br />
