@@ -4,6 +4,8 @@
 <br/>
 Always use type that fit your needs, as this will optimize memory usage and lead to better performance
 
+### Channel should be closed if it's not being used, because it will cause memory leak
+
 # PostgreSQL
 ```SELECT column_name, COUNT(*) FROM table_name WHERE condition GROUP BY column_name;```
 <br />
