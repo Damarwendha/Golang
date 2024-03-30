@@ -5,9 +5,11 @@
 Always use type that fit your needs, as this will optimize memory usage and lead to better performance
 
 ### Golang Notes
-- WaitGroup purpose is to wait until goroutines has finished executing before the program to end
+- WaitGroup purpose is to wait until goroutines finished executing before the program end
 
-- Mutex purpose is to ensure only one goroutine accesses data at a time. Basically, is to prevent changing data at the same time 
+- Mutex purpose is to ensure only one goroutine accesses data at a time. Basically, is to prevent changing data at the same time
+
+- Mutex.RLock & Mutex.RUnlock. if Mutex is currently locked by Mutex.Lock then Mutex.RLock will wait till its released. Basically, to prevent reading wrong data when Mutex.Lock working on changing some data 
 
 - Channel should be closed if it's not being used, because it will cause memory leak
 
