@@ -19,8 +19,8 @@ const (
 	host     = "localhost"
 	port     = 5432
 	user     = "postgres"
-	password = "PASSWORD"
-	dbname   = "DBNAME"
+	password = "Xsasasax1"
+	dbname   = "enigmacamp"
 )
 
 var psqlinfo = fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable", host, port, user, password, dbname)
@@ -32,7 +32,9 @@ func main() {
 	// deleteStudent(8)
 	// fmt.Println(getStudents())
 	// fmt.Println(getStudentById(1))
-	fmt.Println(searchStudentBy("dam"))
+	// fmt.Println(searchStudentBy("dam"))
+	studentE := models.StudentEnrollment{Id: 1, Student_Id: 7, Credit: 5000, Subject: "Dark Of Tower Novel"}
+	enrollSubject(studentE)
 }
 
 // DML
@@ -151,6 +153,65 @@ func scanStudent(rows *sql.Rows, students *[]models.Student) {
 }
 
 // DQL
+
+// TRANSACTION / COMBINE MULTIPLE QUERY
+func enrollSubject(se models.StudentEnrollment) {
+	db := connectToDb()
+	defer db.Close()
+
+	tx, err := db.Begin()
+	if err != nil {
+		panic(err)
+	}
+
+	insertStudentEnrollment(se, tx)
+	taken_credit := getSumCreditOfStudentEnrollment(se.Student_Id, tx)
+	updateStudentCredit(taken_credit, se.Student_Id, tx)
+
+	err = tx.Commit()
+	if err != nil {
+		panic(err)
+	}
+}
+
+func insertStudentEnrollment(se models.StudentEnrollment, tx *sql.Tx) {
+	sqlStatement := "INSERT INTO tx_student_enrollment (id, student_id, subject, credit) VALUES ($1, $2, $3, $4)"
+
+	_, err := tx.Exec(sqlStatement, se.Id, se.Student_Id, se.Subject, se.Credit)
+	rollbackValidate(err, "Insert", tx)
+}
+
+func getSumCreditOfStudentEnrollment(id int, tx *sql.Tx) int {
+	sqlStatement := "SELECT SUM(credit) FROM tx_student_enrollment WHERE student_id = $1;"
+
+	takenCredit := 0
+	err := tx.QueryRow(sqlStatement, id).Scan(&takenCredit)
+	rollbackValidate(err, "Get Sum Credit of Student", tx)
+
+	return takenCredit
+}
+
+func updateStudentCredit(takenCredit, id int, tx *sql.Tx) {
+	sqlStatement := "UPDATE mst_student SET taken_credit = $1 WHERE ID = $2;"
+
+	_, err := tx.Exec(sqlStatement, takenCredit, id)
+	rollbackValidate(err, "Update Student Credit", tx)
+}
+
+func rollbackValidate(err error, msg string, tx *sql.Tx) {
+	if err != nil {
+		err = tx.Rollback()
+		if err != nil {
+			fmt.Println("Error when trying to rollback", err)
+		} else {
+			fmt.Println("Rollback: Transaction has been reverted!")
+		}
+	} else {
+		fmt.Println("Successfully " + msg + "!")
+	}
+}
+
+// TRANSACTION / COMBINE MULTIPLE QUERY
 
 func connectToDb() *sql.DB {
 	db, err := sql.Open("postgres", psqlinfo)
