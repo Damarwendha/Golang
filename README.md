@@ -29,9 +29,6 @@ Example: ```ALTER TABLE mst_product ADD CONSTRAINT fk_product_store FOREIGN KEY(
 
 ### Using too much Join query will lead to bad query performance
 
-# Backend
-![image](https://github.com/Damarwendha/Golang_Database/assets/143293717/affb3c09-543c-41ba-a24e-b2ffa5161b69)
-
 # USEFUL VIDEO'S
 -) Learn Database Normalization
 <br />
