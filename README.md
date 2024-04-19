@@ -4,6 +4,10 @@
 <br/>
 Always use type that fit your needs, as this will optimize memory usage and lead to better performance
 
+### Analogi Middleware di Gin Gonic
+![image](https://github.com/Damarwendha/Golang_Database/assets/143293717/aff74ead-505f-4cb9-8ad4-582f2a3430b0)
+
+
 ### Golang Notes
 - WaitGroup purpose is to wait until goroutines finished executing before the program end
 
