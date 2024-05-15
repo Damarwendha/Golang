@@ -4,6 +4,13 @@
 <br/>
 Always use type that fit your needs, as this will optimize memory usage and lead to better performance
 
+### Go Architecture Flow: 
+1. Model, 
+2. Repository (berhubungan dgn Db / Microservices),
+3. Service (Business Logic)
+4. Controller (isinya crud si gin)
+
+
 ### Analogi Middleware di Gin Gonic
 ![image](https://github.com/Damarwendha/Golang_Database/assets/143293717/aff74ead-505f-4cb9-8ad4-582f2a3430b0)
 
