@@ -10,6 +10,9 @@ Always use type that fit your needs, as this will optimize memory usage and lead
 3. Service (Business Logic)
 4. Controller (isinya crud si gin)
 
+### Command to check coverage (Go Unit Testing)
+```go test ./... -v -coverprofile cover.out; go tool cover -html cover.out```
+
 
 ### Analogi Middleware di Gin Gonic
 ![image](https://github.com/Damarwendha/Golang_Database/assets/143293717/aff74ead-505f-4cb9-8ad4-582f2a3430b0)
